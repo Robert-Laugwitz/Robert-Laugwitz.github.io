@@ -100,7 +100,27 @@ Part of my recent work relates to categorification (joint work with Vanessa Miem
 <p><b>List of Publications</b></p>
 
 
-<script src="https://bibbase.org/show?bib=[https://github.com/Robert-Laugwitz/Robert-Laugwitz.github.io/blob/5788e0ebc522849f6ed8370746965fe783e0bfb1/publications.bib]&jsonp=1"></script> 
+
+<?php
+$_GET['library']=1;
+define('BIBTEXBROWSER_BIBTEX_LINKS',false); // no [bibtex] link by default
+require_once('bibtexbrowser.php');
+global $db;
+$db = new BibDataBase();
+$db->load('publications.bib');
+
+// printing all 2014 entries
+// can also be $query = array('year'=>'.*');
+$query = array('year'=>'2014');
+$entries=$db->multisearch($query);
+uasort($entries, 'compare_bib_entries');
+
+foreach ($entries as $bibentry) {
+  echo $bibentry->toHTML()."<br/>";
+}
+?>
+
+
 
 
          <table width="100%" border=0 cellpadding=10>
