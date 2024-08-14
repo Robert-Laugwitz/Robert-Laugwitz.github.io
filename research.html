@@ -119,6 +119,12 @@ foreach ($entries as $bibentry) {
 ?>
 </p>
 
+<?php
+$_GET['bib']='publications.bib';
+$_GET['all']=1;
+include( 'bibtexbrowser.php' );
+?> 
+
 
 
          <table width="100%" border=0 cellpadding=10>
